@@ -258,26 +258,27 @@ Accounts.account_type = 'savings';
 
 ---10. Write a SQL query to find the average account balance for all customer
 
-> ![alt text](image-13.png)
+> ![alt text](image-19.png)
 
 ```sql
-select avg(balance) as avg_balance
+select customer_id,avg(balance) as avg_balance
 from Accounts
+group by customer_id
 ```
 
 ---
 
 --11. Write a SQL query to calculate the average daily balance for each account over a specified period.
 
-> ![alt text](image-14.png)
+> ![alt text](image-20.png)
 
 ```sql
 select Accounts.account_id,avg(balance) as average_balance
 from Accounts
 join Transactions
 on Accounts.account_id=Transactions.account_id
-where transaction_date between '2023-01-15' and '2023-02-10'
-group by Accounts.account_id
+where transaction_date between '2023-01-05' and '2023-02-22'
+group by Format(transaction_date,'dddd MMM yyyy'),Accounts.account_id
 ```
 
 ---
@@ -299,10 +300,10 @@ order by count(account_id) desc
 
 --13. List customers with high aggregate account balances, along with their account types.
 
-> ![alt text](image-16.png)
+> ![alt text](image-21.png)
 
 ```sql
-select * from customers
+select Accounts.customer_id,account_id,account_type,balance from customers
 join Accounts
 on Customers.customer_id=Accounts.customer_id
 where Accounts.balance=(select max(Accounts.balance) from Accounts)
