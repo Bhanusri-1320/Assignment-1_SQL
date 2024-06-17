@@ -18,11 +18,11 @@
 
 Please make sure to create your own data for these tables to test your queries effectively.
 
-1. **Customers:**
+1. **Customers:**  
    -------- Customers_Table-1-----------
    > ![alt text](image.png)
 
-````sql
+```sql
  create table Customers(
     customer_id int Primary Key,
 	first_name nvarchar(20),
@@ -45,12 +45,16 @@ VALUES
     (8, 'Isabella', 'Phillips', '1996-06-20', 'isabella.phillips@example.com', '9990001111', '999 Spruce Ave, City, Country'),
     (9, 'Alexander', 'Edwards', '1984-02-03', 'alexander.edwards@example.com', '3334445555', '123 Oak St, City, Country'),
     (10, 'Mia', 'Gomez', '1992-10-10', 'mia.gomez@example.com', '7778889999', '456 Cedar Blvd, City, Country');
-    ```
---------------------------------------------------------------------------------------------------------------------------------------
-2. **Accounts:**
------------------------Accounts_Table-2----------------------------
-> ![alt text](image-1.png)
-``` sql
+```
+
+---
+
+2. **Accounts:**  
+   -----------------------Accounts_Table-2----------------------------
+
+> ![alt text](image-23.png)
+
+```sql
 CREATE TABLE Accounts (
     account_id INT PRIMARY KEY,
     customer_id INT,
@@ -70,12 +74,16 @@ VALUES
     (8, 8, 'savings', 500),
     (9, 9, 'current', 1200),
     (10, 10, 'savings', 800);
-    ```
-----------------------------------------------------------------------------------------------------------------------------------------
-----3. **Transactions:**
+```
+
+---
+
+----3. **Transactions:**  
 -------------------Transactions_Table-3--------------------
+
 > ![alt text](image-2.png)
-``` sql
+
+```sql
    create table Transactions(
    transaction_id int Primary Key,
    account_id int,
@@ -96,12 +104,15 @@ VALUES
     (8, 8, 'deposit', 700, '2023-02-10'),
     (9, 9, 'withdrawal', 500, '2023-02-15'),
     (10, 10, 'transfer', 100, '2023-02-20');
-    ```
------------------------------------------------------------------------------------------------------------------
+```
 
--------4. **InterestRates:**---------------------
+---
+
+-------4**InterestRates:**---------------------
+
 > ![alt text](image-3.png)
-``` sql
+
+```sql
    create table InterestRates(
    intrest_rate_id int Primary Key,
    account_type nvarchar(20),
@@ -120,11 +131,15 @@ VALUES
     (8, 'current', 0),
     (9, 'savings', 1),
     (10, 'current', 1);
-    ```
------------------------------------------------------------------------------------------------------------------
+```
+
+---
+
 ------5. **Branches:**
+
 > ![alt text](image-4.png)
-``` sql
+
+```sql
 create table Branches(
 branch_id int Primary Key,
 branch_name nvarchar(30),
@@ -143,31 +158,34 @@ VALUES
     (8, 'Riverfront Branch', '852 River Rd, City, Country'),
     (9, 'Hilltop Branch', '963 Hilltop Ave, City, Country'),
     (10, 'Lakeside Branch', '159 Lake St, City, Country');
-    ```
------------------------------------------------------------------------------------------------------
+```
 
-----------------------------------------------------------------------------------------------------------------
-select * from Customers
-select * from Accounts
-select * from Transactions
-select * from Branches
-select * from InterestRates
------------------------------------------------------------------------------------------------------------------------------------
+---
+
+---
+
+select _ from Customers  
+select _ from Accounts  
+select _ from Transactions  
+select _ from Branches  
+select \* from InterestRates
+
+---
 
 -----2. Write a SQL query to retrieve the name, account type, and email of all customers.
-> ![alt text](image-5.png)
-``` sql
+
+```sql
 select concat(first_name,' ', last_name) as full_name , email, account_type
  from Customers
  join Accounts
  on Customers.customer_id=Accounts.customer_id
-````
+```
+
+> ![alt text](image-5.png)
 
 ---
 
 -------3. Write a SQL query to list all transactions along with the corresponding customer.
-
-> ![alt text](image-6.png)
 
 ```sql
 select concat(first_name,' ', last_name) as full_name,transaction_type,amount,transaction_date from Customers
@@ -179,11 +197,11 @@ Transactions
 on Accounts.account_id=Transactions.account_id
 ```
 
+> ![alt text](image-6.png)
+
 ---
 
 ---4. Write a SQL query to increase the balance of a specific account by a certain amount.
-
-> ![alt text](image-7.png)
 
 ```sql
 --let increase amount=500
@@ -192,55 +210,55 @@ set amount=amount-500
 where account_id=3
 ```
 
+> ![alt text](image-7.png)
+
 ---
 
 -------5. Write a SQL query to combine the first and last names of customers as `full_name`.
-
-> ![alt text](image-8.png)
 
 ```sql
 select concat(first_name,' ', last_name) as full_name
 from Customers
 ```
 
+> ![alt text](image-8.png)
+
 ---
 
 --6. Write a SQL query to remove accounts with a balance of zero where the account type is savings.
-
-> ![alt text](image-9.png)
 
 ```sql
 delete from Accounts
 where balance=0 and account_type='savings'
 ```
 
+> ![alt text](image-9.png)
+
 ---
 
 -----7. Write a SQL query to find customers living in a specific city.
-
-> ![alt text](image-10.png)
 
 ```sql
 select * from Customers
 where address like '%Blvd%'
 ```
 
+> ![alt text](image-10.png)
+
 ---
 
 ---8. Write a SQL query to get the account balance for a specific account.
-
-> ![alt text](image-11.png)
 
 ```sql
 select balance from Accounts
 where account_id=5
 ```
 
+> ![alt text](image-11.png)
+
 ---
 
 --9. Write a SQL query to calculate the interest accrued on savings accounts based on a given interest rate.
-
-> ![alt text](image-12.png)
 
 ```sql
 select Accounts.account_id, balance, intrest_rate,
@@ -254,11 +272,11 @@ where
 Accounts.account_type = 'savings';
 ```
 
+> ![alt text](image-12.png)
+
 ---
 
 ---10. Write a SQL query to find the average account balance for all customer
-
-> ![image](https://github.com/Bhanusri-1320/Assignment-1_SQL/assets/171215054/93987b2d-5c73-47a4-82e6-75d61ab1c895)
 
 ```sql
 select customer_id,avg(balance) as avg_balance
@@ -266,11 +284,11 @@ from Accounts
 group by customer_id
 ```
 
+> ![alt text](image-22.png)
+
 ---
 
 --11. Write a SQL query to calculate the average daily balance for each account over a specified period.
-
-> ![alt text](image-20.png)
 
 ```sql
 select Accounts.account_id,avg(balance) as average_balance
@@ -281,11 +299,11 @@ where transaction_date between '2023-01-05' and '2023-02-22'
 group by Format(transaction_date,'dddd MMM yyyy'),Accounts.account_id
 ```
 
+> ![alt text](image-20.png)
+
 ---
 
 --12. Identify accounts with the highest number of transactions ordered by descending order.
-
-> ![alt text](image-15.png)
 
 ```sql
 insert into Transactions
@@ -296,11 +314,11 @@ group  by account_id
 order by count(account_id) desc
 ```
 
+> ![alt text](image-15.png)
+
 ---
 
 --13. List customers with high aggregate account balances, along with their account types.
-
-> ![alt text](image-21.png)
 
 ```sql
 select Accounts.customer_id,account_id,account_type,balance from customers
@@ -309,11 +327,11 @@ on Customers.customer_id=Accounts.customer_id
 where Accounts.balance=(select max(Accounts.balance) from Accounts)
 ```
 
+> ![alt text](image-21.png)
+
 ---
 
 ---14. Identify and list duplicate transactions based on transaction amount, date, and account.
-
-> ![alt text](image-17.png)
 
 ```sql
 select amount,transaction_date,account_id,
@@ -324,26 +342,24 @@ amount,transaction_date,account_id
 having count(transaction_id)>1
 ```
 
+> ![alt text](image-17.png)
+
 ---
 
 ---15. Calculate the total balance for each account type, including a subquery within the SELECT clause.
-
-> ![alt text](image-18.png)
 
 ```sql
 select account_type,sum(balance) as Total_balance
 from Accounts
 group by account_type
 ----------------with sub_query---------------
-select account_type,(select sum(balance))
-from Accounts
-group by account_type;
-```
-
----
-
-'''
+SELECT account_type, Total_balance
+FROM (
+    SELECT account_type, SUM(balance) AS Total_balance
+    FROM Accounts
+    GROUP BY account_type
+) as sub_query
 
 ```
 
-```
+> ![alt text](image-18.png)
