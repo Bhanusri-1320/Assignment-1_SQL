@@ -258,7 +258,7 @@ Accounts.account_type = 'savings';
 
 ---10. Write a SQL query to find the average account balance for all customer
 
-> ![alt text](image-19.png)
+> ![image](https://github.com/Bhanusri-1320/Assignment-1_SQL/assets/171215054/93987b2d-5c73-47a4-82e6-75d61ab1c895)
 
 ```sql
 select customer_id,avg(balance) as avg_balance
