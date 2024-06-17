@@ -206,7 +206,7 @@ on Accounts.account_id=Transactions.account_id
 ```sql
 --let increase amount=500
 update Transactions
-set amount=amount-500
+set amount=amount+500
 where account_id=3
 ```
 
